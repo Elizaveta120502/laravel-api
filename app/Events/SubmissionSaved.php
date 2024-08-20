@@ -18,7 +18,6 @@ class SubmissionSaved
     public $submission;
 
 
-
     public function __construct(SubmissionDTO $submissionDTO)
     {
         $this->submissionDTO = $submissionDTO;
