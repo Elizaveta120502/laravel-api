@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Submission extends Model
 {
     use HasFactory;
+
+    protected $table = 'submissions';
+
+    protected $fillable = [
+        'name',
+        'email',
+        'message',
+    ];
+
+    public $timestamps = true;
 }
