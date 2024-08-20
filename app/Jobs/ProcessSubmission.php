@@ -2,11 +2,13 @@
 
 namespace App\Jobs;
 
+use App\DTO\SubmissionDTO;
+use App\Events\SubmissionSaved;
+use App\Models\Submission;
+use App\Services\SubmissionService;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Foundation\Queue\Queueable;
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Log;
 
 class ProcessSubmission implements ShouldQueue
 {
@@ -15,16 +17,15 @@ class ProcessSubmission implements ShouldQueue
     /**
      * Create a new job instance.
      */
-    public function __construct()
+    public SubmissionDTO $submissionDTO;
+
+    public function __construct(SubmissionDTO $submissionDTO)
     {
-        //
+        $this->submissionDTO = $submissionDTO;
     }
 
-    /**
-     * Execute the job.
-     */
-    public function handle(): void
+    public function handle(SubmissionService $service)
     {
-        //
+       $service->save($this->submissionDTO);
     }
 }
